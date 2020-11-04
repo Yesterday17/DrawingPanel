@@ -1,5 +1,7 @@
 #pragma once
 #include "utils.h"
+constexpr auto MAX_X = 4096;
+constexpr auto MAX_Y = 4096;
 
 class Shape : public CObject
 {

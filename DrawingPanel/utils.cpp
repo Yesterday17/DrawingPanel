@@ -90,3 +90,18 @@ void MidpointEllipse(CDC* pDC, COLORREF color, CPoint center, CPoint a, CPoint b
 		pDC->SetPixel(CPoint(-x + center.x, -y + center.y), color);
 	}
 }
+
+COLORREF ThonkColor(int x, int y) {
+	try {
+		static CImg<unsigned char> img("thonk.bmp");
+		x = x % img.width();
+		y = y % img.height();
+		return RGB(img(x, y, 0, 0), img(x, y, 0, 1), img(x, y, 0, 2));
+	}
+	catch (CImgException e) {
+		TRACE(e._message);
+	}
+
+	// no color, white
+	return RGB(0xff, 0xff, 0xff);
+}

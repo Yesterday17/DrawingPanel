@@ -23,6 +23,9 @@ Shape* ShapeFactory::Create(ShapeType shape)
     case SHAPE_OVAL:
         result = new ShapeOval();
         break;
+    case SHAPE_POLYGON:
+        result = new ShapePolygon();
+        break;
     case SHAPE_NONE:
     default:
         result = new ShapeNone();

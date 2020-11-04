@@ -36,6 +36,7 @@ BEGIN_MESSAGE_MAP(CDrawingPanelView, CView)
 	ON_COMMAND(ID_POINT, &CDrawingPanelView::OnPoint)
 	ON_COMMAND(ID_LINE, &CDrawingPanelView::OnLine)
 	ON_COMMAND(ID_OVAL, &CDrawingPanelView::OnOval)
+	ON_COMMAND(ID_POLYGON, &CDrawingPanelView::OnPolygon)
 END_MESSAGE_MAP()
 
 // CDrawingPanelView 构造/析构
@@ -180,4 +181,10 @@ void CDrawingPanelView::OnCircle()
 void CDrawingPanelView::OnOval()
 {
 	shape = SHAPE_OVAL;
+}
+
+
+void CDrawingPanelView::OnPolygon()
+{
+	shape = SHAPE_POLYGON;
 }
