@@ -6,4 +6,3 @@ class ShapeOval : public Shape
 	virtual bool Draw(CDC* pDC) override;
 	virtual void Preview(CDC* pDC, CPoint p) override;
 };
-

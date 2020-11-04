@@ -14,4 +14,3 @@ class ShapeFactory
 public:
 	static Shape* Create(ShapeType shape);
 };
-

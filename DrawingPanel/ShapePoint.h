@@ -8,4 +8,3 @@ class ShapePoint : public Shape
 	// Í¨¹ý Shape ¼Ì³Ð
 	virtual void Preview(CDC* pDC, CPoint p) override;
 };
-

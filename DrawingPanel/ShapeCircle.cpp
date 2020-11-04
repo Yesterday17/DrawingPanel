@@ -1,34 +1,5 @@
 #include "pch.h"
 #include "ShapeCircle.h"
-#include <cmath>
-
-void BresenhamCircle(CDC* pDC, CPoint start, CPoint next, COLORREF color) {
-	double xx = next.x - start.x;
-	double yy = next.y - start.y;
-	double R = sqrt(xx * xx + yy * yy);
-
-	int x = 0;
-	int y = R;
-	int p = 3 - 2 * R;
-
-	for (; x <= y; x++) {
-		pDC->SetPixel(CPoint(x + start.x, y + start.y), color);
-		pDC->SetPixel(CPoint(-x + start.x, y + start.y), color);
-		pDC->SetPixel(CPoint(x + start.x, -y + start.y), color);
-		pDC->SetPixel(CPoint(-x + start.x, -y + start.y), color);
-		pDC->SetPixel(CPoint(y + start.x, x + start.y), color);
-		pDC->SetPixel(CPoint(-y + start.x, x + start.y), color);
-		pDC->SetPixel(CPoint(y + start.x, -x + start.y), color);
-		pDC->SetPixel(CPoint(-y + start.x, -x + start.y), color);
-		if (p >= 0) {
-			p += 4 * (x - y) + 10;
-			y--;
-		}
-		else {
-			p += 4 * x + 6;
-		}
-	}
-}
 
 bool ShapeCircle::Draw(CDC* pDC)
 {

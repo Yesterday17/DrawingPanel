@@ -1,4 +1,6 @@
 #pragma once
+#include "utils.h"
+
 class Shape : public CObject
 {
 protected:
@@ -15,4 +17,3 @@ public:
 	virtual bool Draw(CDC* pDC) = 0;
 	virtual void Preview(CDC* pDC, CPoint p) = 0;
 };
-

@@ -16,13 +16,15 @@
 #define ID_CIRCLE                       32774
 #define ID_OVAL                         32775
 #define ID_DRAW_SET_COLOR               32776
+#define ID_BUTTON32784                  32784
+#define ID_POLYGON                      32784
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        312
-#define _APS_NEXT_COMMAND_VALUE         32783
+#define _APS_NEXT_COMMAND_VALUE         32785
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

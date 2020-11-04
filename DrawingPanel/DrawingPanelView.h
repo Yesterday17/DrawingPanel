@@ -66,4 +66,3 @@ public:
 inline CDrawingPanelDoc* CDrawingPanelView::GetDocument() const
    { return reinterpret_cast<CDrawingPanelDoc*>(m_pDocument); }
 #endif
-

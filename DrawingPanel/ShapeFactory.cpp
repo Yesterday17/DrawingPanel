@@ -2,8 +2,10 @@
 #include "ShapeFactory.h"
 #include "ShapeNone.h"
 #include "ShapePoint.h"
+#include "ShapeLine.h"
 #include "ShapeCircle.h"
 #include "ShapeOval.h"
+#include "ShapePolygon.h"
 
 Shape* ShapeFactory::Create(ShapeType shape)
 {
@@ -11,6 +13,9 @@ Shape* ShapeFactory::Create(ShapeType shape)
     switch (shape) {
     case SHAPE_POINT:
         result = new ShapePoint();
+        break;
+    case SHAPE_LINE:
+        result = new ShapeLine();
         break;
     case SHAPE_CIRCLE:
         result = new ShapeCircle();

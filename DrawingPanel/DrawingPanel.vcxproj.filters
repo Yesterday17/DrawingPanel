@@ -66,6 +66,15 @@
     <ClInclude Include="ShapeOval.h">
       <Filter>头文件\Shapes</Filter>
     </ClInclude>
+    <ClInclude Include="ShapePolygon.h">
+      <Filter>头文件\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeLine.h">
+      <Filter>头文件\Shapes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DrawingPanel.cpp">
@@ -102,6 +111,15 @@
       <Filter>源文件\Shapes</Filter>
     </ClCompile>
     <ClCompile Include="ShapeOval.cpp">
+      <Filter>源文件\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapePolygon.cpp">
+      <Filter>源文件\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeLine.cpp">
       <Filter>源文件\Shapes</Filter>
     </ClCompile>
   </ItemGroup>
