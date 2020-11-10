@@ -194,6 +194,7 @@
     <ClInclude Include="Shape.h" />
     <ClInclude Include="ShapeCircle.h" />
     <ClInclude Include="ShapeFactory.h" />
+    <ClInclude Include="ShapeInfinity.h" />
     <ClInclude Include="ShapeLine.h" />
     <ClInclude Include="ShapeNone.h" />
     <ClInclude Include="ShapeOval.h" />
@@ -217,6 +218,7 @@
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="ShapeCircle.cpp" />
     <ClCompile Include="ShapeFactory.cpp" />
+    <ClCompile Include="ShapeInfinity.cpp" />
     <ClCompile Include="ShapeLine.cpp" />
     <ClCompile Include="ShapeNone.cpp" />
     <ClCompile Include="ShapeOval.cpp" />

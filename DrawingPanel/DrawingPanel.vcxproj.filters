@@ -75,6 +75,9 @@
     <ClInclude Include="ShapeLine.h">
       <Filter>头文件\Shapes</Filter>
     </ClInclude>
+    <ClInclude Include="ShapeInfinity.h">
+      <Filter>头文件\Shapes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DrawingPanel.cpp">
@@ -120,6 +123,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ShapeLine.cpp">
+      <Filter>源文件\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeInfinity.cpp">
       <Filter>源文件\Shapes</Filter>
     </ClCompile>
   </ItemGroup>

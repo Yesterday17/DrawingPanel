@@ -4,7 +4,6 @@
 ShapePolygon::ShapePolygon()
 {
 	memset(s_mask, 0, MAX_X * MAX_Y);
-	memset(dda_mask, 0, MAX_X * MAX_Y);
 }
 
 void ShapePolygon::PrepareMask() {
@@ -33,31 +32,6 @@ void ShapePolygon::PrepareMask() {
 	}
 }
 
-void ShapePolygon::PrepareDDALine(CPoint start, CPoint end)
-{
-	double dx, dy, e, x, y;
-	dx = end.x - start.x;
-	dy = end.y - start.y;
-	e = (fabs(dx) > fabs(dy)) ? fabs(dx) : fabs(dy);
-	dx /= e;
-	dy /= e;
-	x = start.x;
-	y = start.y;
-	for (int i = 1; i <= e; i++)
-	{
-		dda_mask[(int)(y + 0.5)][(int)(x + 0.5)] = true;
-		x += dx;
-		y += dy;
-	}
-}
-
-void ShapePolygon::PrepareLineMask() {
-	for (int i = 1; i < points.GetSize(); i++) {
-		PrepareDDALine(points.GetAt(i - 1), points.GetAt(i));
-	}
-	PrepareDDALine(points.GetAt(points.GetSize() - 1), points.GetAt(0));
-}
-
 void ShapePolygon::Fill(CDC* pDC) {
 	int x, y;
 	for (y = 0; y < MAX_Y; y++)
@@ -69,7 +43,7 @@ void ShapePolygon::Fill(CDC* pDC) {
 		{
 			if (s_mask[y][x])
 				inside = !inside;
-			if (inside && !dda_mask[y][x])
+			if (inside && !s_mask[y][x])
 				pDC->SetPixel(x, y, ThonkColor(x, y));
 		}
 	}
@@ -81,10 +55,9 @@ bool ShapePolygon::Draw(CDC* pDC)
 		DDALine(pDC, points.GetAt(i - 1), points.GetAt(i), color);
 	}
 	// TODO: Any edges
-	if (points.GetSize() == 4) {
+	if (isFinished()) {
 		DDALine(pDC, points.GetAt(points.GetSize() - 1), points.GetAt(0), color);
 		PrepareMask();
-		PrepareLineMask();
 		Fill(pDC);
 		return true;
 	}

@@ -18,6 +18,7 @@
 #endif
 #include "ColorDlg.h"
 #include "Shape.h"
+#include "ShapeInfinity.h"
 
 
 // CDrawingPanelView
@@ -37,6 +38,7 @@ BEGIN_MESSAGE_MAP(CDrawingPanelView, CView)
 	ON_COMMAND(ID_LINE, &CDrawingPanelView::OnLine)
 	ON_COMMAND(ID_OVAL, &CDrawingPanelView::OnOval)
 	ON_COMMAND(ID_POLYGON, &CDrawingPanelView::OnPolygon)
+	ON_WM_LBUTTONDBLCLK()
 END_MESSAGE_MAP()
 
 // CDrawingPanelView 构造/析构
@@ -187,4 +189,21 @@ void CDrawingPanelView::OnOval()
 void CDrawingPanelView::OnPolygon()
 {
 	shape = SHAPE_POLYGON;
+}
+
+
+void CDrawingPanelView::OnLButtonDblClk(UINT nFlags, CPoint point)
+{
+	if (painting != nullptr) {
+		ShapeInfinity* inf = dynamic_cast<ShapeInfinity*>(painting);
+		if (inf != nullptr) {
+			inf->Finish();
+			CClientDC dc(this);
+			painting->Draw(&dc);
+			delete painting;
+			painting = nullptr;
+			ReleaseCapture();
+		}
+	}
+	CView::OnLButtonDblClk(nFlags, point);
 }
