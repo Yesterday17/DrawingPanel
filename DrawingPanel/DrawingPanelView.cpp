@@ -69,7 +69,6 @@ void CDrawingPanelView::OnDraw(CDC* /*pDC*/)
 	if (!pDoc)
 		return;
 
-	// TODO: 在此处为本机数据添加绘制代码
 	auto pDC = this->GetDC();
 	for (int i = 0; i < objects.GetSize(); i++) {
 		auto obj = (Shape*)objects.GetAt(i);
@@ -147,7 +146,8 @@ void CDrawingPanelView::OnLButtonDown(UINT nFlags, CPoint point)
 	}
 	painting->AddPoint(point);
 	if (painting->Draw(&dc)) {
-		delete painting;
+		objects.Add(painting);
+		//delete painting;
 		painting = nullptr;
 		ReleaseCapture();
 	}
@@ -200,7 +200,8 @@ void CDrawingPanelView::OnLButtonDblClk(UINT nFlags, CPoint point)
 			inf->Finish();
 			CClientDC dc(this);
 			painting->Draw(&dc);
-			delete painting;
+			objects.Add(painting);
+			//delete painting;
 			painting = nullptr;
 			ReleaseCapture();
 		}

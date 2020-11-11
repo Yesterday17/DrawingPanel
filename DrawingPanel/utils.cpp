@@ -93,7 +93,7 @@ void MidpointEllipse(CDC* pDC, COLORREF color, CPoint center, CPoint a, CPoint b
 
 COLORREF ThonkColor(int x, int y) {
 	try {
-		static CImg<unsigned char> img("thonk.bmp");
+		static CImg<unsigned char> img("1117.bmp");
 		x = x % img.width();
 		y = y % img.height();
 		return RGB(img(x, y, 0, 0), img(x, y, 0, 1), img(x, y, 0, 2));

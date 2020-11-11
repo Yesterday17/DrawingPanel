@@ -12,5 +12,6 @@ private:
 	bool s_mask[MAX_X][MAX_Y];
 
 	void PrepareMask();
+	void ClearMask();
 	void Fill(CDC* pDC);
 };

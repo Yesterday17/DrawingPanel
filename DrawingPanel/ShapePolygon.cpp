@@ -3,7 +3,7 @@
 
 ShapePolygon::ShapePolygon()
 {
-	memset(s_mask, 0, MAX_X * MAX_Y);
+	ClearMask();
 }
 
 void ShapePolygon::PrepareMask() {
@@ -32,6 +32,10 @@ void ShapePolygon::PrepareMask() {
 	}
 }
 
+void ShapePolygon::ClearMask() {
+	memset(s_mask, 0, MAX_X * MAX_Y);
+}
+
 void ShapePolygon::Fill(CDC* pDC) {
 	int x, y;
 	for (y = 0; y < MAX_Y; y++)
@@ -54,11 +58,11 @@ bool ShapePolygon::Draw(CDC* pDC)
 	for (int i = 1; i < points.GetSize(); i++) {
 		DDALine(pDC, points.GetAt(i - 1), points.GetAt(i), color);
 	}
-	// TODO: Any edges
 	if (isFinished()) {
 		DDALine(pDC, points.GetAt(points.GetSize() - 1), points.GetAt(0), color);
 		PrepareMask();
 		Fill(pDC);
+		ClearMask();
 		return true;
 	}
 	return false;
