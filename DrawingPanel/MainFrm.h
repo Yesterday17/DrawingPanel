@@ -4,6 +4,8 @@
 
 #pragma once
 
+#define WM_SET_STATUS WM_USER + 100
+
 class CMainFrame : public CFrameWnd
 {
 	
@@ -16,6 +18,7 @@ public:
 
 // 操作
 public:
+	afx_msg LRESULT OnSetStatus(WPARAM wParam, LPARAM lParam);
 
 // 重写
 public:

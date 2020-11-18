@@ -1,15 +1,17 @@
 #pragma once
 #include "Shape.h"
 
-enum ShapeType {
-	SHAPE_NONE,
-	SHAPE_POINT,
-	SHAPE_LINE,
-	SHAPE_CIRCLE,
-	SHAPE_OVAL,
-	SHAPE_POLYGON,
-	SHAPE_CUBE,
+enum class ShapeType {
+	None,
+	Point,
+	Line,
+	Circle,
+	Oval,
+	Polygon,
+	Cube,
 };
+
+CString ShapeTypeToCString(ShapeType t);
 
 class ShapeFactory
 {

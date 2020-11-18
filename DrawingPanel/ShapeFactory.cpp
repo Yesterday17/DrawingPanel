@@ -8,32 +8,59 @@
 #include "ShapePolygon.h"
 #include "ShapeCube.h"
 
-Shape* ShapeFactory::Create(ShapeType shape)
+Shape* ShapeFactory::Create(ShapeType type)
 {
     Shape* result = nullptr;
-    switch (shape) {
-    case SHAPE_POINT:
+    switch (type) {
+    case ShapeType::Point:
         result = new ShapePoint();
         break;
-    case SHAPE_LINE:
+    case ShapeType::Line:
         result = new ShapeLine();
         break;
-    case SHAPE_CIRCLE:
+    case ShapeType::Circle:
         result = new ShapeCircle();
         break;
-    case SHAPE_OVAL:
+    case ShapeType::Oval:
         result = new ShapeOval();
         break;
-    case SHAPE_POLYGON:
+    case ShapeType::Polygon:
         result = new ShapePolygon();
         break;
-    case SHAPE_CUBE:
+    case ShapeType::Cube:
         result = new ShapeCube();
         break;
-    case SHAPE_NONE:
+    case ShapeType::None:
     default:
         result = new ShapeNone();
         break;
     }
     return result;
+}
+
+CString ShapeTypeToCString(ShapeType type)
+{
+    switch (type) {
+    case ShapeType::Point:
+        return CString("点");
+    case ShapeType::Line:
+        return CString("直线");
+        break;
+    case ShapeType::Circle:
+        return CString("圆");
+        break;
+    case ShapeType::Oval:
+        return CString("椭圆");
+        break;
+    case ShapeType::Polygon:
+        return CString("多边形");
+        break;
+    case ShapeType::Cube:
+        return CString("立方体");
+        break;
+    case ShapeType::None:
+    default:
+        return CString("未选中形状");
+        break;
+    }
 }

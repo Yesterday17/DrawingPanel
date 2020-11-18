@@ -20,6 +20,7 @@
 #include "CubeDlg.h"
 #include "Shape.h"
 #include "ShapeInfinity.h"
+#include "MainFrm.h"
 
 
 // CDrawingPanelView
@@ -39,17 +40,16 @@ BEGIN_MESSAGE_MAP(CDrawingPanelView, CView)
 	ON_COMMAND(ID_LINE, &CDrawingPanelView::OnLine)
 	ON_COMMAND(ID_OVAL, &CDrawingPanelView::OnOval)
 	ON_COMMAND(ID_POLYGON, &CDrawingPanelView::OnPolygon)
+	ON_COMMAND(ID_NEWCUBE, &CDrawingPanelView::OnCube)
 	ON_WM_LBUTTONDBLCLK()
 	ON_COMMAND(ID_FILE_NEW, &CDrawingPanelView::OnFileNew)
-	ON_COMMAND(ID_DRAW_NEWCUBE, &CDrawingPanelView::OnDrawNewcube)
-	ON_COMMAND(ID_NEWCUBE, &CDrawingPanelView::OnCube)
 END_MESSAGE_MAP()
 
 // CDrawingPanelView 构造/析构
 
-CDrawingPanelView::CDrawingPanelView() noexcept : clr_r(0), clr_g(0), clr_b(0), shape(SHAPE_NONE), painting(nullptr)
+CDrawingPanelView::CDrawingPanelView() noexcept : clr_r(0), clr_g(0), clr_b(0), shape(ShapeType::None), painting(nullptr)
 {
-	// TODO: 在此处添加构造代码
+	//UpdateStatus();
 }
 
 CDrawingPanelView::~CDrawingPanelView()
@@ -157,30 +157,48 @@ void CDrawingPanelView::OnMouseMove(UINT nFlags, CPoint point)
 	CView::OnMouseMove(nFlags, point);
 }
 
+void CDrawingPanelView::UpdateStatus()
+{
+	CString* pString = new CString;
+	*pString = ShapeTypeToCString(shape);
+	::PostMessage(AfxGetMainWnd()->m_hWnd, WM_SET_STATUS, 0, reinterpret_cast<LPARAM>(pString));
+}
+
 void CDrawingPanelView::OnPoint()
 {
-	shape = SHAPE_POINT;
+	shape = ShapeType::Point;
+	UpdateStatus();
 }
 
 void CDrawingPanelView::OnLine()
 {
-	shape = SHAPE_LINE;
+	shape = ShapeType::Line;
+	UpdateStatus();
 }
 
 void CDrawingPanelView::OnCircle()
 {
-	shape = SHAPE_CIRCLE;
+	shape = ShapeType::Circle;
+	UpdateStatus();
 }
 
 void CDrawingPanelView::OnOval()
 {
-	shape = SHAPE_OVAL;
+	shape = ShapeType::Oval;
+	UpdateStatus();
+}
+
+void CDrawingPanelView::OnCube()
+{
+	shape = ShapeType::Cube;
+	UpdateStatus();
 }
 
 
 void CDrawingPanelView::OnPolygon()
 {
-	shape = SHAPE_POLYGON;
+	shape = ShapeType::Polygon;
+	UpdateStatus();
 }
 
 
@@ -211,12 +229,6 @@ void CDrawingPanelView::OnFileNew()
 	objects.RemoveAll();
 }
 
-void CDrawingPanelView::OnCube()
-{
-	shape = SHAPE_CUBE;
-}
-
-
 void CDrawingPanelView::OnDrawSetColor()
 {
 	CColorDlg dlg(this->clr_r, this->clr_g, this->clr_b);
@@ -228,14 +240,6 @@ void CDrawingPanelView::OnDrawSetColor()
 		if (painting != nullptr) {
 			painting->SetColor(RGB(clr_r, clr_g, clr_b));
 		}
-	}
-}
-
-void CDrawingPanelView::OnDrawNewcube()
-{
-	CCubeDlg dlg;
-	if (dlg.DoModal() == IDOK) {
-		//
 	}
 }
 

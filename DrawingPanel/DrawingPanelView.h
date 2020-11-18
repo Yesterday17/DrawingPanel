@@ -18,6 +18,7 @@ public:
 
 // 操作
 public:
+	void UpdateStatus();
 
 // 重写
 public:
@@ -43,6 +44,16 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnDrawSetColor();
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
+	afx_msg void OnCircle();
+	afx_msg void OnPoint();
+	afx_msg void OnLine();
+	afx_msg void OnOval();
+	afx_msg void OnPolygon();
+	afx_msg void OnCube();
+	afx_msg void OnFileNew();
 
 private:
 	// shape
@@ -53,18 +64,6 @@ private:
 	int clr_r, clr_g, clr_b;
 	// object list
 	CObArray objects;
-public:
-	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
-	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
-	afx_msg void OnCircle();
-	afx_msg void OnPoint();
-	afx_msg void OnLine();
-	afx_msg void OnOval();
-	afx_msg void OnPolygon();
-	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
-	afx_msg void OnFileNew();
-	afx_msg void OnDrawNewcube();
-	afx_msg void OnCube();
 };
 
 #ifndef _DEBUG  // DrawingPanelView.cpp 中的调试版本
