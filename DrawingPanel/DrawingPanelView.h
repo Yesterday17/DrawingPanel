@@ -63,6 +63,8 @@ public:
 	afx_msg void OnPolygon();
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 	afx_msg void OnFileNew();
+	afx_msg void OnDrawNewcube();
+	afx_msg void OnCube();
 };
 
 #ifndef _DEBUG  // DrawingPanelView.cpp 中的调试版本

@@ -17,6 +17,7 @@
 #define new DEBUG_NEW
 #endif
 #include "ColorDlg.h"
+#include "CubeDlg.h"
 #include "Shape.h"
 #include "ShapeInfinity.h"
 
@@ -40,6 +41,8 @@ BEGIN_MESSAGE_MAP(CDrawingPanelView, CView)
 	ON_COMMAND(ID_POLYGON, &CDrawingPanelView::OnPolygon)
 	ON_WM_LBUTTONDBLCLK()
 	ON_COMMAND(ID_FILE_NEW, &CDrawingPanelView::OnFileNew)
+	ON_COMMAND(ID_DRAW_NEWCUBE, &CDrawingPanelView::OnDrawNewcube)
+	ON_COMMAND(ID_NEWCUBE, &CDrawingPanelView::OnCube)
 END_MESSAGE_MAP()
 
 // CDrawingPanelView 构造/析构
@@ -120,37 +123,25 @@ CDrawingPanelDoc* CDrawingPanelView::GetDocument() const // 非调试版本是�
 
 // CDrawingPanelView 消息处理程序
 
-
-void CDrawingPanelView::OnDrawSetColor()
-{
-	CColorDlg dlg(this->clr_r, this->clr_g, this->clr_b);
-	if (dlg.DoModal() == IDOK) {
-		// Update color
-		clr_r = dlg.clr_r;
-		clr_g = dlg.clr_g;
-		clr_b = dlg.clr_b;
-		if (painting != nullptr) {
-			painting->SetColor(RGB(clr_r, clr_g, clr_b));
-		}
-	}
-}
-
-
 void CDrawingPanelView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	CClientDC dc(this);
 
 	if (painting == nullptr) {
-		this->SetCapture();
 		painting = ShapeFactory::Create(shape);
 		painting->SetColor(RGB(clr_r, clr_g, clr_b));
+		if (painting->NeedCapture()) {
+			this->SetCapture();
+		}
 	}
 	painting->AddPoint(point);
 	if (painting->Draw(&dc)) {
 		objects.Add(painting);
-		//delete painting;
+		if (painting->NeedCapture()) {
+			ReleaseCapture();
+		}
+		// delete painting;
 		painting = nullptr;
-		ReleaseCapture();
 	}
 
 	CView::OnLButtonDown(nFlags, point);
@@ -219,3 +210,32 @@ void CDrawingPanelView::OnFileNew()
 	}
 	objects.RemoveAll();
 }
+
+void CDrawingPanelView::OnCube()
+{
+	shape = SHAPE_CUBE;
+}
+
+
+void CDrawingPanelView::OnDrawSetColor()
+{
+	CColorDlg dlg(this->clr_r, this->clr_g, this->clr_b);
+	if (dlg.DoModal() == IDOK) {
+		// Update color
+		clr_r = dlg.clr_r;
+		clr_g = dlg.clr_g;
+		clr_b = dlg.clr_b;
+		if (painting != nullptr) {
+			painting->SetColor(RGB(clr_r, clr_g, clr_b));
+		}
+	}
+}
+
+void CDrawingPanelView::OnDrawNewcube()
+{
+	CCubeDlg dlg;
+	if (dlg.DoModal() == IDOK) {
+		//
+	}
+}
+

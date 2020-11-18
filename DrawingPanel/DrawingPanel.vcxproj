@@ -184,6 +184,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ColorDlg.h" />
+    <ClInclude Include="CubeDlg.h" />
     <ClInclude Include="DrawingPanel.h" />
     <ClInclude Include="DrawingPanelDoc.h" />
     <ClInclude Include="DrawingPanelView.h" />
@@ -193,6 +194,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="ShapeCircle.h" />
+    <ClInclude Include="ShapeCube.h" />
     <ClInclude Include="ShapeFactory.h" />
     <ClInclude Include="ShapeInfinity.h" />
     <ClInclude Include="ShapeLine.h" />
@@ -205,6 +207,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ColorDlg.cpp" />
+    <ClCompile Include="CubeDlg.cpp" />
     <ClCompile Include="DrawingPanel.cpp" />
     <ClCompile Include="DrawingPanelDoc.cpp" />
     <ClCompile Include="DrawingPanelView.cpp" />
@@ -217,6 +220,7 @@
     </ClCompile>
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="ShapeCircle.cpp" />
+    <ClCompile Include="ShapeCube.cpp" />
     <ClCompile Include="ShapeFactory.cpp" />
     <ClCompile Include="ShapeInfinity.cpp" />
     <ClCompile Include="ShapeLine.cpp" />

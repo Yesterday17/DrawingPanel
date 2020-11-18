@@ -19,6 +19,12 @@
     <Filter Include="源文件\Shapes">
       <UniqueIdentifier>{d2ad8e6f-336a-4a86-a401-9d4f429e3c41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Dialogs">
+      <UniqueIdentifier>{5dff09ce-c922-4442-bf91-8e3b6c03e82c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Dialogs">
+      <UniqueIdentifier>{a5cd197d-ee23-46a3-9843-6e041a83d79c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrawingPanel.h">
@@ -43,9 +49,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="ColorDlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Shape.h">
@@ -78,6 +81,15 @@
     <ClInclude Include="ShapeInfinity.h">
       <Filter>头文件\Shapes</Filter>
     </ClInclude>
+    <ClInclude Include="CubeDlg.h">
+      <Filter>头文件\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorDlg.h">
+      <Filter>头文件\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeCube.h">
+      <Filter>头文件\Shapes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DrawingPanel.cpp">
@@ -93,9 +105,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="ColorDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Shape.cpp">
@@ -126,6 +135,15 @@
       <Filter>源文件\Shapes</Filter>
     </ClCompile>
     <ClCompile Include="ShapeInfinity.cpp">
+      <Filter>源文件\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeDlg.cpp">
+      <Filter>源文件\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorDlg.cpp">
+      <Filter>源文件\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeCube.cpp">
       <Filter>源文件\Shapes</Filter>
     </ClCompile>
   </ItemGroup>

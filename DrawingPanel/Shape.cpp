@@ -21,3 +21,8 @@ void Shape::SetColor(COLORREF color)
 {
 	this->color = color;
 }
+
+bool Shape::NeedCapture()
+{
+	return true;
+}

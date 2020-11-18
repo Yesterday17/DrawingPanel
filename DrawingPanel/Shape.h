@@ -18,4 +18,5 @@ public:
 	void SetColor(COLORREF);
 	virtual bool Draw(CDC* pDC) = 0;
 	virtual void Preview(CDC* pDC, CPoint p) = 0;
+	virtual bool NeedCapture();
 };

@@ -178,6 +178,3 @@ void CDrawingPanelApp::OnAppAbout()
 }
 
 // CDrawingPanelApp 消息处理程序
-
-
-

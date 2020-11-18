@@ -6,6 +6,7 @@
 #include "ShapeCircle.h"
 #include "ShapeOval.h"
 #include "ShapePolygon.h"
+#include "ShapeCube.h"
 
 Shape* ShapeFactory::Create(ShapeType shape)
 {
@@ -25,6 +26,9 @@ Shape* ShapeFactory::Create(ShapeType shape)
         break;
     case SHAPE_POLYGON:
         result = new ShapePolygon();
+        break;
+    case SHAPE_CUBE:
+        result = new ShapeCube();
         break;
     case SHAPE_NONE:
     default:

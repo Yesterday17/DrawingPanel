@@ -8,6 +8,7 @@ enum ShapeType {
 	SHAPE_CIRCLE,
 	SHAPE_OVAL,
 	SHAPE_POLYGON,
+	SHAPE_CUBE,
 };
 
 class ShapeFactory
