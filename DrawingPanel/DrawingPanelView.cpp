@@ -39,6 +39,7 @@ BEGIN_MESSAGE_MAP(CDrawingPanelView, CView)
 	ON_COMMAND(ID_OVAL, &CDrawingPanelView::OnOval)
 	ON_COMMAND(ID_POLYGON, &CDrawingPanelView::OnPolygon)
 	ON_WM_LBUTTONDBLCLK()
+	ON_COMMAND(ID_FILE_NEW, &CDrawingPanelView::OnFileNew)
 END_MESSAGE_MAP()
 
 // CDrawingPanelView 构造/析构
@@ -207,4 +208,14 @@ void CDrawingPanelView::OnLButtonDblClk(UINT nFlags, CPoint point)
 		}
 	}
 	CView::OnLButtonDblClk(nFlags, point);
+}
+
+
+void CDrawingPanelView::OnFileNew()
+{
+	Invalidate();
+	for (int i = 0; i < objects.GetSize(); i++) {
+		delete objects.GetAt(i);
+	}
+	objects.RemoveAll();
 }

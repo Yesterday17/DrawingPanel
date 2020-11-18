@@ -62,6 +62,7 @@ public:
 	afx_msg void OnOval();
 	afx_msg void OnPolygon();
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
+	afx_msg void OnFileNew();
 };
 
 #ifndef _DEBUG  // DrawingPanelView.cpp 中的调试版本
