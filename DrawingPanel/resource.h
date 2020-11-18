@@ -11,6 +11,14 @@
 #define IDC_COLOR_R                     1000
 #define IDC_COLOR_G                     1001
 #define IDC_COLOR_B                     1002
+#define IDC_RADIO_PARALLEL              1003
+#define IDC_RADIO_PERSPECTIVE           1004
+#define IDC_PERSPECTIVE_X               1005
+#define IDC_PERSPECTIVE_Y               1006
+#define IDC_PERSPECTIVE_Z               1007
+#define IDC_BUTTON_PERSPECTIVE          1008
+#define IDC_BUTTON2                     1009
+#define IDC_BUTTON_RESET                1009
 #define ID_SET_COLOR                    32771
 #define ID_POINT                        32772
 #define ID_LINE                         32773
@@ -29,7 +37,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        314
 #define _APS_NEXT_COMMAND_VALUE         32789
-#define _APS_NEXT_CONTROL_VALUE         1003
+#define _APS_NEXT_CONTROL_VALUE         1010
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

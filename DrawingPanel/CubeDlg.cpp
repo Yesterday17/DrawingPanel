@@ -14,6 +14,10 @@ IMPLEMENT_DYNAMIC(CCubeDlg, CDialogEx)
 
 CCubeDlg::CCubeDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_NEWCUBE, pParent)
+	, pX(0)
+	, pY(0)
+	, pZ(300)
+	, rParrel(FALSE)
 {
 
 }
@@ -25,13 +29,24 @@ CCubeDlg::~CCubeDlg()
 void CCubeDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Text(pDX, IDC_PERSPECTIVE_X, pX);
+	DDX_Text(pDX, IDC_PERSPECTIVE_Y, pY);
+	DDX_Text(pDX, IDC_PERSPECTIVE_Z, pZ);
+	DDX_Radio(pDX, IDC_RADIO_PARALLEL, rParrel);
+	DDX_Control(pDX, IDC_PERSPECTIVE_X, pxEdit);
+	DDX_Control(pDX, IDC_PERSPECTIVE_Y, pyEdit);
+	DDX_Control(pDX, IDC_PERSPECTIVE_Z, pzEdit);
+	DDX_Control(pDX, IDC_BUTTON_PERSPECTIVE, pSubmit);
 }
 
 
 BEGIN_MESSAGE_MAP(CCubeDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_MOUSEWHEEL()
-	ON_WM_KEYDOWN()
+	ON_BN_CLICKED(IDC_RADIO_PARALLEL, &CCubeDlg::OnBnClickedRadioParallel)
+	ON_BN_CLICKED(IDC_RADIO_PERSPECTIVE, &CCubeDlg::OnBnClickedRadioParallel)
+	ON_BN_CLICKED(IDC_BUTTON_PERSPECTIVE, &CCubeDlg::OnClickedButtonPerspective)
+	ON_BN_CLICKED(IDC_BUTTON_RESET, &CCubeDlg::OnBnClickedButtonReset)
 END_MESSAGE_MAP()
 
 
@@ -45,7 +60,7 @@ void CCubeDlg::MultiplyMatrixTo(const float mul[][4], float to[][4])
 void CCubeDlg::OnPaint()
 {
 	CPaintDC dc(this);
-	cube.Draw(&dc, CPoint(50, 50));
+	cube.Draw(&dc, CPoint(0, 0));
 }
 
 
@@ -148,14 +163,15 @@ BOOL CCubeDlg::PreTranslateMessage(MSG* pMsg)
 {
 	if (pMsg->message == WM_KEYDOWN)
 	{
-		CCubeDlg::OnKeyDown(pMsg->wParam, 0, 0);
-		return 1;
+		if (CCubeDlg::OnKeyDown(pMsg->wParam)) {
+			return 1;
+		}
 	}
 	return CDialogEx::PreTranslateMessage(pMsg);
 }
 
 
-void CCubeDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+bool CCubeDlg::OnKeyDown(UINT nChar)
 {
 	static const float theta = 2.0f / 180 * (float)atan(1) * 4;
 	if (GetKeyState(VK_CONTROL) & 0x80) {
@@ -221,6 +237,8 @@ void CCubeDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			MultiplyMatrixTo(transform, cube.RotateMatrix);
 			break;
 		}
+		default:
+			return false;
 		}
 	}
 	else {
@@ -244,8 +262,62 @@ void CCubeDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		case VK_NEXT: // Page Down
 			cube.TransformMatrix[3][2] += 10.;
 			break;
+		default:
+			return false;
 		}
 	}
 	Invalidate();
-	CDialogEx::OnKeyDown(nChar, nRepCnt, nFlags);
+	return true;
+}
+
+void CCubeDlg::OnBnClickedRadioParallel()
+{
+	UpdateData(TRUE);
+	switch (rParrel) {
+	case 0: {
+		// 禁用透视投影参数框
+		pxEdit.EnableWindow(FALSE);
+		pyEdit.EnableWindow(FALSE);
+		pzEdit.EnableWindow(FALSE);
+		pSubmit.EnableWindow(FALSE);
+
+		// 平行投影
+		float alpha = atan(1); // pi / 4
+		memcpy(cube.ProjMatrix, cube.IdentityMatrix, sizeof(float) * 16);
+		cube.ProjMatrix[2][2] = 0;
+		cube.ProjMatrix[2][0] = 0.5 * cos(alpha);
+		cube.ProjMatrix[2][1] = 0.5 * sin(alpha);
+		Invalidate();
+		break;
+	}
+	case 1:
+		// 开始准备透视投影的参数
+		pxEdit.EnableWindow(TRUE);
+		pyEdit.EnableWindow(TRUE);
+		pzEdit.EnableWindow(TRUE);
+		pSubmit.EnableWindow(TRUE);
+		break;
+	}
+}
+
+
+void CCubeDlg::OnClickedButtonPerspective()
+{
+	UpdateData(TRUE);
+	memcpy(cube.ProjMatrix, cube.IdentityMatrix, sizeof(float) * 16);
+
+	const float d = -pZ;
+	cube.ProjMatrix[2][0] = pX / d;
+	cube.ProjMatrix[2][1] = pY / d;
+	cube.ProjMatrix[2][2] = 0;
+	cube.ProjMatrix[2][3] = 1 / d;
+	Invalidate();
+}
+
+
+void CCubeDlg::OnBnClickedButtonReset()
+{
+	// TODO
+	cube = POJOCube();
+	Invalidate();
 }

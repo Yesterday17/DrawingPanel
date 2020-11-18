@@ -23,9 +23,8 @@ public:
 	float RotateMatrix[4][4] = { {1,0,0,0},{0,1,0,0},{0,0,1,0}, {0,0,0,1} };
 	float ProjMatrix[4][4] = { {1,0,0,0},{0,1,0,0},{0,0,1,0}, {0,0,0,1} };
 
-private:
 	// 单位矩阵，不允许修改
-	float IdentityMat[4][4] = { {1,0,0,0},{0,1,0,0},{0,0,1,0},{0,0,0,1} };
+	float IdentityMatrix[4][4] = { {1,0,0,0},{0,1,0,0},{0,0,1,0},{0,0,0,1} };
 };
 
 // CubeDlg 对话框
@@ -52,6 +51,18 @@ public:
 	afx_msg void OnPaint();
 	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt); 
 	BOOL CCubeDlg::PreTranslateMessage(MSG* pMsg);
+	bool OnKeyDown(UINT nChar);
+	afx_msg void OnBnClickedRadioParallel();
+
 	POJOCube cube;
-	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	int pX;
+	int pY;
+	int pZ;
+	BOOL rParrel;
+	CEdit pxEdit;
+	CEdit pyEdit;
+	CEdit pzEdit;
+	CButton pSubmit;
+	afx_msg void OnClickedButtonPerspective();
+	afx_msg void OnBnClickedButtonReset();
 };
