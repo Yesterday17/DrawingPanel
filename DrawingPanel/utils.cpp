@@ -105,3 +105,48 @@ COLORREF ThonkColor(int x, int y) {
 	// no color, white
 	return RGB(0xff, 0xff, 0xff);
 }
+
+void MatrixMultiply(const float a[][4], const float b[][4], float result[][4]) {
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			result[i][j] = 0;
+			for (int k = 0; k < 4; k++) {
+				result[i][j] += a[i][k] * b[k][j];
+			}
+		}
+	}
+}
+
+void VectorMatrixMultiply(const float a[4], float b[][4], float result[4]) {
+	for (int i = 0; i < 4; ++i) {
+		result[i] = 0;
+		for (int j = 0; j < 4; ++j) {
+			result[i] += a[j] * b[j][i];
+		}
+	}
+}
+
+float DotProduct(const float U[3], const float V[3]) {
+	return U[0] * V[0] + U[1] * V[1] + U[2] * V[2];
+}
+
+void CrossPruduct(const float U[3], const float V[3], float result[3]) {
+	result[0] = U[1] * V[2] - U[2] * V[1];
+	result[1] = U[2] * V[0] - U[0] * V[2];
+	result[2] = U[0] * V[1] - U[1] * V[0];
+}
+
+CPoint Proj(float vert[4], float projMat[][4]) {
+	float tmpVec[4];
+	VectorMatrixMultiply(vert, projMat, tmpVec);
+
+	tmpVec[0] /= tmpVec[3];
+	tmpVec[1] /= tmpVec[3];
+	tmpVec[2] /= tmpVec[3];
+
+	CPoint vert2D;
+	vert2D.x = (int)(tmpVec[0] + 0.5);
+	vert2D.y = (int)(tmpVec[1] + .5);
+
+	return vert2D;
+}

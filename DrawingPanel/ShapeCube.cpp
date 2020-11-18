@@ -6,10 +6,10 @@ bool ShapeCube::Draw(CDC* pDC)
 	if (!finished) {
 		CCubeDlg dlg;
 		if (dlg.DoModal() == IDOK) {
+			finished = true;
 			cube = dlg.cube;
-			// TODO: 绘制立方体
-			// FIXME: 把下面的 false 改成 true
-			return false;
+			cube.Draw(pDC, points.GetAt(0));
+			return true;
 		}
 		else {
 			points.RemoveAll();
@@ -17,7 +17,7 @@ bool ShapeCube::Draw(CDC* pDC)
 		}
 	}
 	else {
-		// TODO: 绘制立方体
+		cube.Draw(pDC, points.GetAt(0));
 		return true;
 	}
 }
