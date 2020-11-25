@@ -7,6 +7,7 @@
 #include "ShapeOval.h"
 #include "ShapePolygon.h"
 #include "ShapeCube.h"
+#include "ShapePolyRect.h"
 
 Shape* ShapeFactory::Create(ShapeType type)
 {
@@ -29,6 +30,9 @@ Shape* ShapeFactory::Create(ShapeType type)
         break;
     case ShapeType::Cube:
         result = new ShapeCube();
+        break;
+    case ShapeType::PolyRect:
+        result = new ShapePolyRect();
         break;
     case ShapeType::None:
     default:
@@ -58,6 +62,8 @@ CString ShapeTypeToCString(ShapeType type)
     case ShapeType::Cube:
         return CString("立方体");
         break;
+    case ShapeType::PolyRect:
+        return CString("裁切多边形");
     case ShapeType::None:
     default:
         return CString("未选中形状");

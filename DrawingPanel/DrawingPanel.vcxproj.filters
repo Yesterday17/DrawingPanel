@@ -90,6 +90,9 @@
     <ClInclude Include="ShapeCube.h">
       <Filter>头文件\Shapes</Filter>
     </ClInclude>
+    <ClInclude Include="ShapePolyRect.h">
+      <Filter>头文件\Shapes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DrawingPanel.cpp">
@@ -144,6 +147,9 @@
       <Filter>源文件\Dialogs</Filter>
     </ClCompile>
     <ClCompile Include="ShapeCube.cpp">
+      <Filter>源文件\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapePolyRect.cpp">
       <Filter>源文件\Shapes</Filter>
     </ClCompile>
   </ItemGroup>

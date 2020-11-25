@@ -9,6 +9,7 @@ enum class ShapeType {
 	Oval,
 	Polygon,
 	Cube,
+	PolyRect,
 };
 
 CString ShapeTypeToCString(ShapeType t);
