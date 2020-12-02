@@ -64,6 +64,8 @@ private:
 	int clr_r, clr_g, clr_b;
 	// object list
 	CObArray objects;
+public:
+	afx_msg void OnPolyrect();
 };
 
 #ifndef _DEBUG  // DrawingPanelView.cpp 中的调试版本

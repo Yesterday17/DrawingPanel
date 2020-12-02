@@ -43,6 +43,7 @@ BEGIN_MESSAGE_MAP(CDrawingPanelView, CView)
 	ON_COMMAND(ID_NEWCUBE, &CDrawingPanelView::OnCube)
 	ON_WM_LBUTTONDBLCLK()
 	ON_COMMAND(ID_FILE_NEW, &CDrawingPanelView::OnFileNew)
+	ON_COMMAND(ID_POLYRECT, &CDrawingPanelView::OnPolyrect)
 END_MESSAGE_MAP()
 
 // CDrawingPanelView 构造/析构
@@ -188,16 +189,21 @@ void CDrawingPanelView::OnOval()
 	UpdateStatus();
 }
 
+void CDrawingPanelView::OnPolygon()
+{
+	shape = ShapeType::Polygon;
+	UpdateStatus();
+}
+
 void CDrawingPanelView::OnCube()
 {
 	shape = ShapeType::Cube;
 	UpdateStatus();
 }
 
-
-void CDrawingPanelView::OnPolygon()
+void CDrawingPanelView::OnPolyrect()
 {
-	shape = ShapeType::Polygon;
+	shape = ShapeType::PolyRect;
 	UpdateStatus();
 }
 
@@ -242,4 +248,3 @@ void CDrawingPanelView::OnDrawSetColor()
 		}
 	}
 }
-

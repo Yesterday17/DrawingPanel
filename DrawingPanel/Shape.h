@@ -3,10 +3,12 @@
 constexpr auto MAX_X = 4096;
 constexpr auto MAX_Y = 4096;
 
+typedef CArray<CPoint, CPoint> CPArray;
+
 class Shape : public CObject
 {
 protected:
-	CArray<CPoint, CPoint> points;
+	CPArray points;
 	COLORREF color;
 	CPoint* lastPoint;
 

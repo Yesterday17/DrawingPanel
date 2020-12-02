@@ -1,7 +1,7 @@
 #pragma once
 #include "Shape.h"
 #include "ShapeInfinity.h"
-class ShapePolyRect : public Shape, ShapeInfinity
+class ShapePolyRect : public Shape, public ShapeInfinity
 {
 	// Í¨¹ý Shape ¼Ì³Ð
 	virtual bool Draw(CDC* pDC) override;
